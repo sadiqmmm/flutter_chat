@@ -17,7 +17,7 @@ class RestDatasource {
       "password": password,
       "device_token": deviceToken,
     }).then((dynamic res) {
-      var body = JSON.decode(res.body);
+      var body = json.decode(res.body);
 
       print(body.toString());
       if (body["error"] != null) throw new Exception(body["error_msg"]);
@@ -29,7 +29,7 @@ class RestDatasource {
     var messageUrl = "$backendUrl/api/messages?page=$page";
     return getHeaders().then((dynamic headers) {
       return _netUtil.get(messageUrl, headers).then((dynamic res) {
-        var body = JSON.decode(res.body);
+        var body = json.decode(res.body);
 
         print(body.toString());
         if (body["error"] != null) throw new Exception(body["error_msg"]);
@@ -43,7 +43,7 @@ class RestDatasource {
     var messageUrl = "$backendUrl/api/auth/sign_out";
     return getHeaders().then((dynamic headers) {
       return _netUtil.delete(messageUrl, headers: headers).then((dynamic res) {
-        var body = JSON.decode(res.body);
+        var body = json.decode(res.body);
 
         print(body.toString());
         if (body["error"] != null) throw new Exception(body["error_msg"]);
@@ -60,7 +60,7 @@ class RestDatasource {
           .put(userRoomUrl, body: {}, headers: headers)
           .then((dynamic res) {
         try {
-          var body = JSON.decode(res.body);
+          var body = json.decode(res.body);
           print(body.toString());
           if (body["error"] != null) throw new Exception(body["error_msg"]);
           return body;

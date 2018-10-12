@@ -1,6 +1,4 @@
-import 'dart:async';
 import 'dart:convert';
-
 import 'package:chat/src/constant.dart';
 import 'package:chat/src/data/database_helper.dart';
 import 'package:chat/src/models/message.dart';
@@ -157,7 +155,7 @@ class ChatScreenState extends State<ChatScreen>
   }
 
   void onData(_data) {
-    var data = JSON.decode(_data);
+    var data = json.decode(_data);
     switch (data["type"]) {
       case "ping":
         break;

@@ -13,7 +13,7 @@ class Auth {
   Auth(this._uid, this._accessToken);
 
   Auth.map(dynamic response, String deviceToken) {
-    var obj = JSON.decode(response.body)["data"];
+    var obj = json.decode(response.body)["data"];
     var headers = response.headers;
 
     this._deviceToken = deviceToken;
