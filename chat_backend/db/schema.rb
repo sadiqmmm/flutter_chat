@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 20180604064607) do
 
-  create_table "device_tokens", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "device_tokens", force: :cascade do |t|
     t.bigint "user_id"
     t.string "token"
     t.datetime "created_at", null: false
@@ -20,7 +23,7 @@ ActiveRecord::Schema.define(version: 20180604064607) do
     t.index ["user_id"], name: "index_device_tokens_on_user_id"
   end
 
-  create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "messages", force: :cascade do |t|
     t.text "text"
     t.bigint "user_id"
     t.datetime "created_at", null: false
@@ -28,7 +31,7 @@ ActiveRecord::Schema.define(version: 20180604064607) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
-  create_table "user_rooms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "user_rooms", force: :cascade do |t|
     t.bigint "user_id"
     t.datetime "read_at"
     t.datetime "created_at", null: false
@@ -36,7 +39,7 @@ ActiveRecord::Schema.define(version: 20180604064607) do
     t.index ["user_id"], name: "index_user_rooms_on_user_id"
   end
 
-  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "users", force: :cascade do |t|
     t.string "provider", default: "email", null: false
     t.string "uid", default: "", null: false
     t.string "encrypted_password", default: "", null: false
