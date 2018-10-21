@@ -5,6 +5,7 @@ import 'package:chat/src/constant.dart';
 import 'package:chat/src/data/database_helper.dart';
 import 'package:chat/src/models/auth.dart';
 import 'package:chat/src/models/message.dart';
+import 'package:chat/src/models/blog.dart';
 import 'package:chat/src/utils/network_util.dart';
 
 class RestDatasource {
@@ -22,6 +23,20 @@ class RestDatasource {
       print(body.toString());
       if (body["error"] != null) throw new Exception(body["error_msg"]);
       return new Auth.map(res, deviceToken);
+    });
+  }
+
+  Future<ListBlog> getBlogs(int page) {
+    var blogUrl = "$backendUrl/api/blogs?page=$page";
+    return getHeaders().then((dynamic headers) {
+      return _netUtil.get(blogUrl, headers).then((dynamic res) {
+        var body = json.decode(res.body);
+
+        print(body.toString());
+        if (body["error"] != null) throw new Exception(body["error_msg"]);
+
+        return new ListBlog.map(body);
+      });
     });
   }
 
