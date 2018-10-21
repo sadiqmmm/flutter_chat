@@ -12,7 +12,7 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create blog" do
     assert_difference('Blog.count') do
-      post blogs_url, params: { blog: { body: @blog.body, title: @blog.title } }, as: :json
+      post blogs_url, params: { blog: { body: @blog.body, title: @blog.title, user_id: @blog.user_id } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update blog" do
-    patch blog_url(@blog), params: { blog: { body: @blog.body, title: @blog.title } }, as: :json
+    patch blog_url(@blog), params: { blog: { body: @blog.body, title: @blog.title, user_id: @blog.user_id } }, as: :json
     assert_response 200
   end
 
